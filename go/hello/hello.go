@@ -1,18 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/younger-1/code-playground/go/greetings"
 )
 
 func main() {
-	// Set properties of the predefined Logger, including
-	// the log entry prefix and a flag to disable printing
-	// the time, source file, and line number.
-	log.SetPrefix("greetings: ")
-	log.SetFlags(0)
+	// Set properties of the predefined Logger
+	//   1. the log entry prefix and
+	//   2. set flag to disable printing the time, source file, and line number.
+	// log.SetPrefix("greetings: ")
+	// log.SetFlags(0)
+	log.SetFlags(log.Lshortfile | log.Ltime)
 
 	// Request a greeting message.
 	message, err := greetings.Hello("Younger")
@@ -23,7 +23,7 @@ func main() {
 	}
 	// If no error was returned, print the returned message
 	// to the console.
-	fmt.Println(message)
+	log.Println(message)
 
 	// A slice of names.
 	names := []string{"Gladys", "Samantha", "Darrin"}
@@ -34,5 +34,5 @@ func main() {
 	}
 	// If no error was returned, print the returned map of
 	// messages to the console.
-	fmt.Println(messages)
+	log.Println(messages)
 }
