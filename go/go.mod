@@ -1,4 +1,4 @@
-module github.com/my/repo
+module github.com/younger-1/code-playground/go
 
 go 1.23.1
 
