@@ -10,3 +10,13 @@ This workshop covers:
 - Introduction to the Go programming language
 - Introduction to the Cobra CLI framework (used by Kubernetes, Docker, Hugo, etc)
 - Building a Todo application in Go using Cobra
+
+```sh
+# Install Cobra-CLI generator
+# @see <https://github.com/spf13/cobra-cli/blob/main/README.md>
+go install github.com/spf13/cobra-cli@latest
+
+go mod init github.com/younger-1/code-playground/go/myapp                                                                                       at  github.com/younger-1/code-playground
+
+cobra-cli init --author "Xavier Young" --license apache --viper
+```
