@@ -1,0 +1,12 @@
+## Building an Awesome CLI App in Go – OSCON 2017
+
+> <https://spf13.com/presentation/building-an-awesome-cli-app-in-go-oscon/>
+> A workshop outlining the techniques, principles, and libraries you need to create user-friendly command-line interfaces and command suites.
+> It cover everything from how to design and build commands to working with and parsing flags, config files and remote config systems, and how to work with environment variables and 12-factor apps.
+
+This workshop covers:
+
+- CLI application design
+- Introduction to the Go programming language
+- Introduction to the Cobra CLI framework (used by Kubernetes, Docker, Hugo, etc)
+- Building a Todo application in Go using Cobra
