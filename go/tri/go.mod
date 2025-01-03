@@ -1,4 +1,4 @@
-module github.com/younger-1/code-playground/go/myapp
+module github.com/younger-1/code-playground/go/tri
 
 go 1.23.4
 

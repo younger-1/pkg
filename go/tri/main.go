@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/younger-1/code-playground/go/myapp/cmd"
+import "github.com/younger-1/code-playground/go/tri/cmd"
 
 func main() {
 	cmd.Execute()
