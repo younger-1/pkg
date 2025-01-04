@@ -16,7 +16,9 @@ limitations under the License.
 package cmd
 
 import (
+	"errors"
 	"fmt"
+	"io/fs"
 	"log"
 
 	"github.com/spf13/cobra"
@@ -26,11 +28,15 @@ import (
 // listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list todo items",
+	Short: "List todo items",
 	Run: func(cmd *cobra.Command, args []string) {
-		items, err := todo.ReadItems("./todo.txt")
+		items, err := todo.ReadItems(dataFile)
 		if err != nil {
 			log.Printf("%v", err)
+			var pathError *fs.PathError
+			if errors.As(err, &pathError) {
+				fmt.Println("No todo yet, please add first")
+			}
 		}
 		for i, v := range items {
 			fmt.Printf("%d. %s\n", i+1, v)

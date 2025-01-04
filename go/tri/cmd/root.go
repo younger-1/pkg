@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -36,6 +37,8 @@ It's designed to be as simple as possible to help you accomplish your goals`,
 	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
+var dataFile string
+
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
@@ -46,6 +49,9 @@ func Execute() {
 }
 
 func init() {
+	log.SetPrefix("[tri] ")
+	log.SetFlags(log.Lshortfile)
+
 	cobra.OnInitialize(initConfig)
 
 	// Here you will define your flags and configuration settings.
@@ -53,6 +59,17 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.tri.yaml)")
+
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Panicln("cannot get user-specific home dir")
+	}
+	rootCmd.PersistentFlags().StringVar(
+		&dataFile,
+		"datafile",
+		home+string(os.PathSeparator)+".tri-data.json",
+		"data file to store todo items",
+	)
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
