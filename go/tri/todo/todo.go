@@ -50,3 +50,13 @@ func (i *Item) SetPriority(p int) {
 		i.Priority = 2
 	}
 }
+
+func (i *Item) PrettyP() string {
+	switch i.Priority {
+	case 1:
+		return "[p1]"
+	case 3:
+		return "[p3]"
+	}
+	return ""
+}

@@ -20,6 +20,8 @@ import (
 	"fmt"
 	"io/fs"
 	"log"
+	"os"
+	"text/tabwriter"
 
 	"github.com/spf13/cobra"
 	"github.com/younger-1/code-playground/go/tri/todo"
@@ -30,6 +32,7 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List todo items",
 	Run: func(cmd *cobra.Command, args []string) {
+		w := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
 		items, err := todo.ReadItems(dataFile)
 		if err != nil {
 			log.Printf("%v", err)
@@ -39,8 +42,9 @@ var listCmd = &cobra.Command{
 			}
 		}
 		for i, v := range items {
-			fmt.Printf("%d. %v\n", i+1, v)
+			fmt.Fprintf(w, "%d. %s\t%s\t\n", i+1, v.PrettyP(), v.Text)
 		}
+		w.Flush()
 	},
 }
 

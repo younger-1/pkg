@@ -22,3 +22,11 @@ cobra-cli init --author "Xavier Young" --license apache --viper
 cobra-cli add add --author "Xavier Young" --license apache
 cobra-cli add list --author "Xavier Young" --license apache
 ```
+
+Example
+```sh
+go run . add hello world
+go run . add "eat fruits"
+go run . add "format list" -p1                                                                                                          at  github.com/younger-1/code-playground
+go run . list
+```
