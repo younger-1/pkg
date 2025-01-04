@@ -21,6 +21,7 @@ import (
 	"io/fs"
 	"log"
 	"os"
+	"sort"
 	"text/tabwriter"
 
 	"github.com/spf13/cobra"
@@ -34,12 +35,17 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		items, err := todo.ReadItems(dataFile)
 		if err != nil {
-			log.Printf("%v", err)
 			var pathError *fs.PathError
 			if errors.As(err, &pathError) {
 				fmt.Println("No todo yet, please add first")
+			} else {
+				log.Printf("%v", err)
 			}
 		}
+
+		// log.Printf("%+v", items)
+		sort.Sort(todo.ByPri(items))
+		// log.Printf("%+v", items)
 
 		w := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
 		for _, v := range items {

@@ -70,3 +70,15 @@ func (i *Item) PrettyP() string {
 func (i *Item) Label() string {
 	return fmt.Sprintf("%d.", i.position)
 }
+
+// ByPri implements sort.Interface for []Item
+type ByPri []Item
+
+func (s ByPri) Len() int      { return len(s) }
+func (s ByPri) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s ByPri) Less(i, j int) bool {
+	if s[i].Priority == s[j].Priority {
+		return s[i].position < s[j].position
+	}
+	return s[i].Priority < s[j].Priority
+}

@@ -16,6 +16,8 @@ limitations under the License.
 package cmd
 
 import (
+	"errors"
+	"io/fs"
 	"log"
 
 	"github.com/spf13/cobra"
@@ -29,7 +31,11 @@ var addCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		items, err := todo.ReadItems(dataFile)
 		if err != nil {
-			log.Printf("%v", err)
+			var pathError *fs.PathError
+			if errors.As(err, &pathError) {
+			} else {
+				log.Printf("%v", err)
+			}
 		}
 
 		for _, v := range args {
