@@ -53,8 +53,13 @@ var doneCmd = &cobra.Command{
 				continue
 			}
 
-			items[i].Done = true
-			fmt.Printf("%q is marked done\n", items[i].Text)
+			if !invert {
+				items[i].Done = true
+				fmt.Printf("%q is marked done\n", items[i].Text)
+			} else {
+				items[i].Done = false
+				fmt.Printf("%q is marked todo\n", items[i].Text)
+			}
 		}
 		err = todo.SaveItems(dataFile, items)
 		if err != nil {
@@ -62,6 +67,8 @@ var doneCmd = &cobra.Command{
 		}
 	},
 }
+
+var invert bool
 
 func init() {
 	rootCmd.AddCommand(doneCmd)
@@ -75,4 +82,6 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// doneCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	doneCmd.Flags().BoolVarP(&invert, "invert", "i", false, "Invert done status")
 }
