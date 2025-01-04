@@ -33,7 +33,9 @@ var addCmd = &cobra.Command{
 		}
 
 		for _, v := range args {
-			items = append(items, todo.Item{Text: v})
+			item := todo.Item{Text: v}
+			item.SetPriority(priority)
+			items = append(items, item)
 		}
 		// fmt.Printf("%#v\n", items)
 		err = todo.SaveItems(dataFile, items)
@@ -42,6 +44,8 @@ var addCmd = &cobra.Command{
 		}
 	},
 }
+
+var priority int
 
 func init() {
 	rootCmd.AddCommand(addCmd)
@@ -55,4 +59,6 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	addCmd.Flags().IntVarP(&priority, "priority", "p", 2, "Priority:1,2,3")
 }

@@ -39,7 +39,7 @@ var listCmd = &cobra.Command{
 			}
 		}
 		for i, v := range items {
-			fmt.Printf("%d. %s\n", i+1, v)
+			fmt.Printf("%d. %v\n", i+1, v)
 		}
 	},
 }
