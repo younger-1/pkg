@@ -49,7 +49,7 @@ var listCmd = &cobra.Command{
 
 		w := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
 		for _, v := range items {
-			fmt.Fprintf(w, "%s %s\t%s\t\n", v.Label(), v.PrettyP(), v.Text)
+			fmt.Fprintf(w, "%s\t%s\t%s\t%s\t\n", v.Label(), v.PrettyDone(), v.PrettyP(), v.Text)
 		}
 		w.Flush()
 	},
