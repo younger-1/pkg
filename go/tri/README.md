@@ -25,8 +25,9 @@ cobra-cli add list --author "Xavier Young" --license apache
 
 Example
 ```sh
-go run . add hello world
 go run . add "eat fruits"
+go run . add hello world -p3
 go run . add "format list" -p1                                                                                                          at  github.com/younger-1/code-playground
 go run . list
+go run . done 2
 ```

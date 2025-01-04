@@ -10,6 +10,7 @@ type Item struct {
 	Text     string
 	Priority int
 	position int
+	Done     bool
 }
 
 func SaveItems(filename string, items []Item) error {
