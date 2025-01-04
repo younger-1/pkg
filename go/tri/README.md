@@ -19,4 +19,6 @@ go install github.com/spf13/cobra-cli@latest
 go mod init github.com/younger-1/code-playground/go/tri                                                                                       at  github.com/younger-1/code-playground
 
 cobra-cli init --author "Xavier Young" --license apache --viper
+
+cobra-cli add add --author "Xavier Young" --license apache
 ```
