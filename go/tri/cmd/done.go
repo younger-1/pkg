@@ -53,7 +53,7 @@ var doneCmd = &cobra.Command{
 				continue
 			}
 
-			if !invert {
+			if !invertFlag {
 				items[i].Done = true
 				fmt.Printf("%q is marked done\n", items[i].Text)
 			} else {
@@ -68,7 +68,7 @@ var doneCmd = &cobra.Command{
 	},
 }
 
-var invert bool
+var invertFlag bool
 
 func init() {
 	rootCmd.AddCommand(doneCmd)
@@ -83,5 +83,5 @@ func init() {
 	// is called directly, e.g.:
 	// doneCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
-	doneCmd.Flags().BoolVarP(&invert, "invert", "i", false, "Invert done status")
+	doneCmd.Flags().BoolVarP(&invertFlag, "invert", "i", false, "Invert done status")
 }
