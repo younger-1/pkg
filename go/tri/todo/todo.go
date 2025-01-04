@@ -2,12 +2,14 @@ package todo
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
 type Item struct {
 	Text     string
 	Priority int
+	position int
 }
 
 func SaveItems(filename string, items []Item) error {
@@ -37,6 +39,10 @@ func ReadItems(filename string) ([]Item, error) {
 		return nil, err
 	}
 
+	for i := range items {
+		items[i].position = i + 1
+	}
+
 	return items, nil
 }
 
@@ -59,4 +65,8 @@ func (i *Item) PrettyP() string {
 		return "[p3]"
 	}
 	return ""
+}
+
+func (i *Item) Label() string {
+	return fmt.Sprintf("%d.", i.position)
 }
