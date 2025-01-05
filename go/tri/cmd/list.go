@@ -25,6 +25,7 @@ import (
 	"text/tabwriter"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/younger-1/code-playground/go/tri/todo"
 )
 
@@ -33,7 +34,7 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List todo items",
 	Run: func(cmd *cobra.Command, args []string) {
-		items, err := todo.ReadItems(dataFile)
+		items, err := todo.ReadItems(viper.GetString("dataFile"))
 		if err != nil {
 			var pathError *fs.PathError
 			if errors.As(err, &pathError) {

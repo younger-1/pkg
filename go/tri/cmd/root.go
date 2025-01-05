@@ -70,6 +70,9 @@ func init() {
 		home+string(os.PathSeparator)+".tri-data.json",
 		"data file to store todo items",
 	)
+	viper.BindPFlag("datafile", rootCmd.PersistentFlags().Lookup("datafile"))
+	// log.Println(dataFile)
+	// log.Println(viper.GetString("datafile"))
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -93,6 +96,7 @@ func initConfig() {
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
+	viper.SetEnvPrefix("tri")
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {

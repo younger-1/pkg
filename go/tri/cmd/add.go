@@ -21,6 +21,7 @@ import (
 	"log"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/younger-1/code-playground/go/tri/todo"
 )
 
@@ -29,7 +30,7 @@ var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add todo items",
 	Run: func(cmd *cobra.Command, args []string) {
-		items, err := todo.ReadItems(dataFile)
+		items, err := todo.ReadItems(viper.GetString("dataFile"))
 		if err != nil {
 			var pathError *fs.PathError
 			if errors.As(err, &pathError) {
@@ -44,7 +45,7 @@ var addCmd = &cobra.Command{
 			items = append(items, item)
 		}
 		// fmt.Printf("%#v\n", items)
-		err = todo.SaveItems(dataFile, items)
+		err = todo.SaveItems(viper.GetString("dataFile"), items)
 		if err != nil {
 			log.Printf("%v", err)
 		}

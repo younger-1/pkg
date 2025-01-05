@@ -23,6 +23,7 @@ import (
 	"strconv"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/younger-1/code-playground/go/tri/todo"
 )
 
@@ -31,7 +32,7 @@ var doneCmd = &cobra.Command{
 	Use:   "done",
 	Short: "Mark items as done",
 	Run: func(cmd *cobra.Command, args []string) {
-		items, err := todo.ReadItems(dataFile)
+		items, err := todo.ReadItems(viper.GetString("dataFile"))
 		if err != nil {
 			var pathError *fs.PathError
 			if errors.As(err, &pathError) {
@@ -61,7 +62,7 @@ var doneCmd = &cobra.Command{
 				fmt.Printf("%q is marked todo\n", items[i].Text)
 			}
 		}
-		err = todo.SaveItems(dataFile, items)
+		err = todo.SaveItems(viper.GetString("dataFile"), items)
 		if err != nil {
 			log.Printf("%v", err)
 		}
