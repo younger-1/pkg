@@ -1,4 +1,4 @@
-module github.com/younger-1/code-playground/go/web-service-gin
+module github.com/younger-1/pkg/go/web-service-gin
 
 go 1.23.4
 

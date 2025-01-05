@@ -1,4 +1,4 @@
-module github.com/younger-1/code-playground/go/simple
+module github.com/younger-1/pkg/go/simple
 
 go 1.23.1
 

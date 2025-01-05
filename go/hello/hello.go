@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/younger-1/code-playground/go/greetings"
+	"github.com/younger-1/pkg/go/greetings"
 )
 
 func main() {

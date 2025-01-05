@@ -18,7 +18,7 @@ This workshop covers:
 # @see <https://github.com/spf13/cobra-cli/blob/main/README.md>
 go install github.com/spf13/cobra-cli@latest
 
-go mod init github.com/younger-1/code-playground/go/tri                                                                                       at  github.com/younger-1/code-playground
+go mod init github.com/younger-1/pkg/go/tri                                                                                       at  github.com/younger-1/pkg
 
 cobra-cli init --author "Xavier Young" --license apache --viper
 cobra-cli add add --author "Xavier Young" --license apache
@@ -30,7 +30,7 @@ cobra-cli add list --author "Xavier Young" --license apache
 ```sh
 go run . add "eat fruits"
 go run . add hello world -p3
-go run . add "format list" -p1                                                                                                          at  github.com/younger-1/code-playground
+go run . add "format list" -p1                                                                                                          at  github.com/younger-1/pkg
 go run . list
 go run . done 2
 go run . list --done

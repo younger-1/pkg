@@ -1,4 +1,4 @@
-module github.com/younger-1/code-playground/go/data-access
+module github.com/younger-1/pkg/go/data-access
 
 go 1.23.4
 

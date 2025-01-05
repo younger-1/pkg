@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/younger-1/code-playground/go/simple/morestrings"
+	"github.com/younger-1/pkg/go/simple/morestrings"
 )
 
 func main() {

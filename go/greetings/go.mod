@@ -1,3 +1,3 @@
-module github.com/younger-1/code-playground/go/greetings
+module github.com/younger-1/pkg/go/greetings
 
 go 1.23.4
