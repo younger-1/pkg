@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"text/template"
 )
 
 type Page struct {
@@ -42,11 +43,21 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
 }
 
+func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
+	t, _ := template.ParseFiles(tmpl + ".html")
+	t.Execute(w, p)
+}
+
 // viewHandler that will allow users to view a wiki page. It will handle URLs prefixed with "/view/".
 func viewHandler(w http.ResponseWriter, r *http.Request) {
 	title := r.URL.Path[len("/view/"):]
-	p, _ := loadPage(title)
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
+	p, err := loadPage(title)
+	if err != nil { // redirect the client to the edit Page so the content may be created:
+		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+		return
+	}
+	// fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
+	renderTemplate(w, "view", p)
 }
 
 // editHandler loads the page (or, if it doesn't exist, create an empty Page struct), and displays an HTML form.
@@ -56,12 +67,13 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		p = &Page{Title: title}
 	}
-	fmt.Fprintf(w, `
-<h1>Editing %s</h1>
-<form action="/save/%s" method=\"POST\">
-	<textarea name="body">%s</textarea><br>
-	<input type="submit" value="Save">
-</form>`, p.Title, p.Title, p.Body)
+	// 	fmt.Fprintf(w, `
+	// <h1>Editing %s</h1>
+	// <form action="/save/%s" method=\"POST\">
+	// 	<textarea name="body">%s</textarea><br>
+	// 	<input type="submit" value="Save">
+	// </form>`, p.Title, p.Title, p.Body)
+	renderTemplate(w, "edit", p)
 }
 
 func saveHandler(w http.ResponseWriter, r *http.Request) {

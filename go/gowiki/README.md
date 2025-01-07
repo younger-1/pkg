@@ -12,6 +12,9 @@ Covered in this tutorial:
 4. Using the regexp package to validate user input
 5. Using closures
 
+An http.ResponseWriter value assembles the HTTP server's response; by writing to it, we send data to the HTTP client.
+An http.Request is a data structure that represents the client HTTP request. r.URL.Path is the path component of the request URL
+
 ```sh
 go run .
 
