@@ -42,7 +42,7 @@ curl http://localhost:8080/albums \
 ```
 
 ```sh
-curl http://localhost:8080/albums \                                                                                                                       at  github.com:younger-1/notes
+curl http://localhost:8080/albums \
     --include \
     --header "Content-Type: application/json" \
     --request "POST" \
